@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Simple form validation</title>
+    <script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+    <script src="../validate.js"></script>
+</head>
+<body>
+    <div id="myDiv">
+        <label>User Name <span class="red-star">*</span> </label>
+        <input type="text" name="userName" class="validate-required" />
+        <br />
+
+        <label>Password <span class="red-star">*</span></label>
+        <input type="password" name="password" class="validate-required" />
+        <br />
+
+        <input type="button" id="loginButton" value="Login" />
+    </div>
+    <script type="text/javascript">
+        $(function () {
+            /*
+            Default case of initValidationEvents method is expecting the page to have a form and a button with type="submit".
+            But in this case we just have a div container and a button with type="button".
+            So we are passing a dummy function as an argument to disable submit event handler.
+             */
+            validator.initValidationEvents('myDiv',function(){});
+            $('#loginButton').click(function(){
+                if(validator.isValidForm('myDiv')){
+                    alert('your form is valid :D');
+                } else {
+                    alert('your form is not valid !!!!! :(')
+                }
+            })
+        });
+    </script>
+</body>
+</html>
