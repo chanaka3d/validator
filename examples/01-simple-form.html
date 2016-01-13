@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>Simple form validation</title>
     <script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+    <script src="../notify.min.js"></script>
     <script src="../validate.js"></script>
 </head>
 <body>
@@ -21,6 +22,21 @@
     <script type="text/javascript">
         $(function () {
             validator.initValidationEvents('myForm');
+            validator.showError = function(element,errorMessage){
+                $(element).notify(
+                        errorMessage,
+                        {
+                            position:"right",
+                            autoHide: false,
+                            clickToHide: false
+                        }
+                );
+            };
+
+            validator.hideError = function(element){
+                $(element).notify('notify-hide');
+            };
+
         });
     </script>
 </body>
